@@ -24,21 +24,59 @@
 
                 </a>
             </li>
-            <li class="{{ (request()->is('dashboard/*')) ? (request()->is('dashboard/printIndex')) ? '' : 'active' :''  }}">
-                <a href="{{ route('applicantData') }}">
-                    <i class="icon-book-open"></i> <span>Applicant Data</span>
+             <li class="{{ (request()->is('/dashboard/site-settings')) ? (request()->is('/dashboard/site-settings')) ? '' : 'active' :''  }}">
+                <a href="{{ route('siteSettings.index') }}">
+                    <i class="icon-settings"></i> <span>Site Setting</span>
                 </a>
             </li>
-            <li class="{{ (request()->is('dashboard/printIndex')) ? 'active':''  }}">
+              <li class="treeview "> <a href="#"> <i class="icon-cms"></i> <span>CMS</span> <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i> </span> </a>
+                <ul class="treeview-menu">
+                    <li class="">
+                        <a href="{{ url('dashboard/about') }}">
+                            <i class="icon-book-open"></i> <span>About Management</span>
+                        </a>
+                    </li>
+                      <li class="">
+                        <a href="{{ url('dashboard/banner') }}">
+                            <i class="icon-book-open"></i> <span>Banner Management</span>
+                        </a>
+                    </li>
+                     <li class="">
+                        <a href="{{ url('dashboard/post') }}">
+                            <i class="icon-book-open"></i> <span>Content Management</span>
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="{{ url('dashboard/news') }}">
+                            <i class="icon-book-open"></i> <span>News Management</span>
+                        </a>
+                    </li>
+                    <li class="">
+                        <a href="{{ url('dashboard/news') }}">
+                            <i class="icon-book-open"></i> <span>Staff Management</span>
+                        </a>
+                    </li>
+            
+                     <li class="">
+                        <a href="{{ url('dashboard/news') }}">
+                            <i class="icon-book-open"></i> <span>Testomonial Management</span>
+                        </a>
+                    </li>
+                   
+                </ul>
+            </li>
+           
+            {{-- <li class="{{ (request()->is('dashboard/printIndex')) ? 'active':''  }}">
                 <a href="{{ route('printIndex') }}">
                     <i class="icon-book-open"></i> <span>Print</span>
                 </a>
             </li>
             <li class="{{ (request()->is('form')) ? 'active':''  }}">
                 <a href="{{ route('applicant.form') }}">
-                    <i class="icon-book-open"></i> <span>New Applicant</span>
+                    <i class="icon-book-open"></i> <span>Content Management</span>
                 </a>
-            </li>
+            </li> --}}
+          
             {{-- <li class="{{ (request()->is('council/dashboard/council/applicant/passed/list')) ? 'active':''  }}">
                 <a href="{{route("council.pass.list")}}">
                     <i class="icon-graduation"></i> <span>View all Passed List</span>

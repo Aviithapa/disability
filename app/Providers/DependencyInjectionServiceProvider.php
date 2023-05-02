@@ -2,9 +2,8 @@
 
 namespace App\Providers;
 
-use App\Modules\Backend\ApplicantInformation\Repositories\ApplicantRepository as RepositoriesApplicantRepository;
-use App\Modules\Backend\ApplicantInformation\Repositories\EloquentApplicantRepository;
 use Illuminate\Support\ServiceProvider;
+use SuperAdmin\Models\Website\SiteSetting;
 
 class DependencyInjectionServiceProvider extends ServiceProvider
 {
@@ -25,11 +24,5 @@ class DependencyInjectionServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind(
-            RepositoriesApplicantRepository::class,
-            EloquentApplicantRepository::class
-        );
-
-       
     }
 }
