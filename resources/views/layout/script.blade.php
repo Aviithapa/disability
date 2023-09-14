@@ -21,4 +21,10 @@
 
 <script src="http://nepalidatepicker.sajanmaharjan.com.np/nepali.datepicker/js/nepali.datepicker.v3.7.min.js" type="text/javascript"></script>
 
+  <script src="{{asset('assets/js/vendor.min.js')}}"></script>
 
+    <!-- Chart.js -->
+    <script src="{{asset('assets/vendor/chart.js/chart.min.js')}}"></script>
+
+    <!-- Profile Demo App js -->
+    <script src="{{asset('assets/js/pages/profile.init.js')}}"></script>

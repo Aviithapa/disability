@@ -13,9 +13,20 @@
 <!-- BEGIN BODY -->
 <body class="skin-blue sidebar-mini">
 @include('layout.header')
-@include('layout.sidebar')
+@switch(Auth::user()->role)
+    @case('ward')
+        @include('layout.ward-sidebar')
+        @break
+    @case('admin')
+          @include('layout.sidebar')
+    
+        @break
+    @default
+        
+@endswitch
+
 <!-- BEGIN CONTAINER -->
-@include('layout.flash-message')
+{{-- @include('layout.flash-message') --}}
 
 @yield('content')
 <!-- END CONTAINER -->

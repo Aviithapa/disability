@@ -50,22 +50,33 @@
                                           
                                           </span>
                                      </div>
-                                     <div class="col-lg-6" style="text-align: center; justify-content: center;  color:#DC143C; font-wwight: 800;   flex: 0 0 50%;
+                                     <div class="col-lg-6" style="text-align: center; justify-content: center;  color:#DC143C; font-weight: 800;   flex: 0 0 50%;
                                      max-width: 55%;" >
                                         प्रदेश सरकार  </br> सुदूरपश्चिम प्रदेश </br> दशरथचन्द नगरपालिका बैतडी </br>
                                         
 
                                     </div>
-                                    <div class="col-lg-3" style="flex: 0 0 18%; max-width: 45%;">
-                                        {{-- <div class="img" style="border: 2px solid black; height:100px; width:100px;"> --}}
-                                            {{-- <img src="{{ $applicant->getProfileImage() }}" height="100" width="100px"> --}}
-                                        {{-- </div> --}}
+                                    <div class="col-lg-3" style="flex: 0 0 20%; max-width: 45%; justify-content: flex-end;
+    display: flex;">
+                                        <div class="img" style=" height:80px; width:80px;">
+                                           {!! \SimpleSoftwareIO\QrCode\Facades\QrCode::size(80)->generate('Name : '.$applicant->IdNumber. 'Disability type : '  .  $applicant->disability_type. ' Dob : ' . $applicant->dob_nep )!!}
+                                        </div>
                                     </div>
                                     <div class="identity" style="border: 2px solid black; color:white;  margin: auto;
                                     width: 70%;
                                     padding: 10px;
                                     font-size: 16px;
-                                    text-align:center; background : red">
+                                    text-align:center; background :   @if( $applicant->disability_type === 'A')
+            red;
+        @elseif($applicant->disability_type === 'B')
+            green;
+        @elseif($applicant->disability_type === 'C')
+            blue;
+        @elseif($applicant->disability_type === 'D')
+            yellow;
+        @else
+            none; /* Default background color */
+        @endif">
                                         DISABILITY IDENTITY CARD
                                     </div>
                                     <div class="col-lg-12" style="flex: 0 0 100%; max-width: 100%; font-size:12px; margin-top: 15px !important; line-height: 1.6;">
@@ -196,22 +207,33 @@
                                           
                                           </span>
                                      </div>
-                                     <div class="col-lg-6" style="text-align: center; justify-content: center;  color:#DC143C; font-wwight: 800;   flex: 0 0 50%;
+                                     <div class="col-lg-6" style="text-align: center; justify-content: center;  color:#DC143C; font-weight: 800;   flex: 0 0 50%;
                                      max-width: 55%;" >
                                         प्रदेश सरकार  </br> सुदूरपश्चिम प्रदेश </br> दशरथचन्द नगरपालिका बैतडी </br>
                                         
 
                                     </div>
-                                    <div class="col-lg-3" style="flex: 0 0 18%; max-width: 45%;">
-                                        {{-- <div class="img" style="border: 2px solid black; height:100px; width:100px;"> --}}
-                                            {{-- <img src="{{ $applicant->getProfileImage() }}" height="100" width="100px"> --}}
-                                        {{-- </div> --}}
+                                    <div class="col-lg-3" style="flex: 0 0 20%; max-width: 45%; justify-content: flex-end;
+    display: flex;">
+                                        <div class="img" style=" height:80px; width:80px;">
+                                           {!! \SimpleSoftwareIO\QrCode\Facades\QrCode::size(80)->generate('Name : '.$applicant->IdNumber. 'Disability type : '  .  $applicant->disability_type. ' Dob : ' . $applicant->dob_nep )!!}
+                                        </div>
                                     </div>
                                     <div class="identity" style="border: 2px solid black; color:white;  margin: auto;
                                     width: 70%;
                                     padding: 10px;
                                     font-size: 16px;
-                                    text-align:center; background : red">
+                                    text-align:center; background :  @if( $applicant->disability_type === 'A')
+            red;
+        @elseif($applicant->disability_type === 'B')
+            green;
+        @elseif($applicant->disability_type === 'C')
+            blue;
+        @elseif($applicant->disability_type === 'D')
+            yellow;
+        @else
+            none; /* Default background color */
+        @endif">
                                         DISABILITY IDENTITY CARD
                                     </div>
                                     <div class="col-lg-12" style="flex: 0 0 100%; max-width: 100%; font-size:12px; margin-top: 15px !important; line-height: 1.6;">

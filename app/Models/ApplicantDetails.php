@@ -43,15 +43,76 @@ class ApplicantDetails extends Model
         'dob_eng',
         'dob_nep',
         'IdNumber',
+        'ward_recommendation_image',
+        'health_examination_report',
+        'full_size_photo',
+        'video',
+        'citizenship_image',
+        'status',
+        'ward_no',
+        'decision_image'
     ];
 
     public function getProfileImage()
     {
-        if(isset($this->photo)) {
-            return Storage::url('photo/' .$this->photo);
-        }
-        else {
+        if (isset($this->photo)) {
+            return Storage::url('photo/' . $this->photo);
+        } else {
             return imageNotFound();
+        }
+    }
+
+    public function getWardRecommendationImage()
+    {
+        if (isset($this->ward_recommendation_image)) {
+            return Storage::url('photo/' . $this->ward_recommendation_image);
+        } else {
+            return imageNotFound();
+        }
+    }
+
+    public function getHealthExaminationImage()
+    {
+        if (isset($this->health_examination_report)) {
+            return Storage::url('photo/' . $this->health_examination_report);
+        } else {
+            return imageNotFound();
+        }
+    }
+
+    public function getFullSizeImage()
+    {
+        if (isset($this->full_size_photo)) {
+            return Storage::url('photo/' . $this->full_size_photo);
+        } else {
+            return imageNotFound();
+        }
+    }
+
+    public function getCitizenshipImage()
+    {
+        if (isset($this->citizenship_image)) {
+            return Storage::url('photo/' . $this->citizenship_image);
+        } else {
+            return imageNotFound();
+        }
+    }
+
+    public function getVideo()
+    {
+        if (isset($this->video)) {
+            return Storage::url('photo/' . $this->video);
+        } else {
+            return imageNotFound();
+        }
+    }
+
+    public function getDecisionPhoto()
+    {
+        if (isset($this->decision_image)) {
+            return Storage::url('photo/' . $this->decision_image);
+        } else {
+            return imageNotFound('small');
         }
     }
 }

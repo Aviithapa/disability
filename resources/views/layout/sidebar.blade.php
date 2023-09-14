@@ -20,46 +20,25 @@
             <li class="header">PERSONAL</li>
             <li class="{{ (request()->is('dashboard')) ? 'active':''  }}">
                 <a href="/">
-                    <i class="icon-home"></i> <span>Dashboard</span>
+                    <i class="icon-home"></i> <span>ड्यासबोर्ड</span>
 
                 </a>
             </li>
-            <li class="{{ (request()->is('dashboard/*')) ? (request()->is('dashboard/printIndex')) ? '' : 'active' :''  }}">
+            <li class="{{ (request()->is('dashboard/*')) ? (request()->is('dashboard/printIndex') || request()->is('dashboard/disability-type') || request()->is('dashboard/disability-group')) ? '' : 'active' :''  }}">
                 <a href="{{ route('applicantData') }}">
-                    <i class="icon-book-open"></i> <span>Applicant Data</span>
+                    <i class="icon-book-open"></i> <span>अपाङ्गता परिचय पत्र</span>
                 </a>
             </li>
-            <li class="{{ (request()->is('dashboard/printIndex')) ? 'active':''  }}">
-                <a href="{{ route('printIndex') }}">
-                    <i class="icon-book-open"></i> <span>Print</span>
+             <li class="{{ (request()->is('dashboard/disability-type')) ? 'active' :''  }}">
+                <a href="{{ route('disability-type.index') }}">
+                    <i class="icon-book-open"></i> <span>अपांगताको प्रकार</span>
                 </a>
             </li>
-            <li class="{{ (request()->is('form')) ? 'active':''  }}">
-                <a href="{{ route('applicant.form') }}">
-                    <i class="icon-book-open"></i> <span>New Applicant</span>
+             <li class="{{ (request()->is('dashboard/disability-group')) ? 'active' :''  }}">
+                <a href="{{ route('disability-group.index') }}">
+                    <i class="icon-book-open"></i> <span>अपांगताको वर्गीकरण</span>
                 </a>
             </li>
-            {{-- <li class="{{ (request()->is('council/dashboard/council/applicant/passed/list')) ? 'active':''  }}">
-                <a href="{{route("council.pass.list")}}">
-                    <i class="icon-graduation"></i> <span>View all Passed List</span>
-                </a>
-            </li>
-            <li class="{{ (request()->is('council/dashboard/council/applicant/tslc/list')) ? 'active':''  }}">
-                <a href="{{route("council.tslc.list")}}">
-                    <i class="icon-graduation"></i> <span>View TSLC Student List</span>
-                </a>
-            </li>
-            <li class="{{ (request()->is('council/dashboard/council/darta/book')) ? 'active':  ''  }}">
-                <a href="{{route('council.darta.book')}}">
-                    <i class="icon-book-open"></i> <span>Darta Book</span>
-
-                </a>
-            </li>
-            <li class="{{ (request()->is('council/dashboard/officer/subjectCommittee/minuteIndex')) ? 'active':''  }}">
-                <a href="{{route("subjectCommittee.minuteDataSubjectCommitteeIndex.officer")}}">
-                    <i class="icon-book-open"></i> <span>Minute  Committee Data</span>
-                </a>
-            </li> --}}
         </ul>
     </div>
     <!-- /.sidebar -->

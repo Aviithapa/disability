@@ -17,3 +17,26 @@
 
 <link href="http://nepalidatepicker.sajanmaharjan.com.np/nepali.datepicker/css/nepali.datepicker.v3.7.min.css" rel="stylesheet" type="text/css"/>
 
+
+  
+<style>
+    .search-button {
+	background: blue;
+	color: white;
+	border: 1px solid white !important;
+	padding: 6px 15px 6px 15px;
+	width: 100%;
+}
+
+.reset-button {
+	color: red;
+	border: 1px solid red !important;
+	padding: 6px 15px 6px 15px;
+	width: 100%;
+    background: white;
+}
+
+select.form-control:not([size]):not([multiple]) {
+    height: calc(2.25rem);
+}
+</style>

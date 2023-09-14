@@ -15,6 +15,7 @@ class CreateUserRequest extends Request
             'email' => 'required|unique:users,email',
             'password' => 'required|min:6|confirmed',
             'password_confirmation' => 'required|min:6',
+
         ];
     }
 }
