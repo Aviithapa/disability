@@ -15,7 +15,7 @@
     <div class="content">
         <div class="row">
             <div class="col-lg-3 col-xs-6 m-b-3">
-                <a href="{{route('printIndex')}}">
+                <a href="javascript:void(0);" onclick="submitFormWithStatusType('Approved')">
                 <div class="card">
                     <div class="card-body"><span class="info-box-icon bg-aqua"><i class="icon-briefcase"></i></span>
                         <div class="info-box-content"> <span class="info-box-number">{{ count($verifiedCount) }}</span>
@@ -25,17 +25,36 @@
                 </a>
             </div>
             <div class="col-lg-3 col-xs-6 m-b-3">
-                <a href="{{route('applicantData')}}">
+                <a href="javascript:void(0);" onclick="submitFormWithStatusType('New')">
                 <div class="card">
                     <div class="card-body"><span class="info-box-icon bg-aqua"><i class="icon-briefcase"></i></span>
                         <div class="info-box-content"> <span class="info-box-number">{{ count($unverifiedCount) }}</span>
-                            <span class="info-box-text">Unverified  Applicant</span> </div>
+                            <span class="info-box-text">नयाँ आवेदक</span> </div>
+                    </div>
+                </div>
+                </a>
+            </div>
+             <div class="col-lg-3 col-xs-6 m-b-3">
+                <a href="javascript:void(0);" onclick="submitFormWithStatusType('Rejected')">
+                <div class="card">
+                    <div class="card-body"><span class="info-box-icon bg-aqua"><i class="icon-briefcase"></i></span>
+                        <div class="info-box-content"> <span class="info-box-number">{{ $rejectedCount }}</span>
+                            <span class="info-box-text">अस्वीकृत आवेदक</span> </div>
                     </div>
                 </div>
                 </a>
             </div>
         </div>
+        <div class="row">
+        </div>
+
     </div>
+    <form method="POST" action="{{ route('applicantData') }}" id="searchForm">
+    @csrf <!-- Add CSRF token for security -->
+    <input type="hidden" name="disability_type" id="disabilityTypeInput" value="">
+    <input type="hidden" name="status" id="statusInput" value="">
+
+</form>
     {{--        <!-- Main content -->--}}
     {{--        <div class="content">--}}
 
@@ -79,3 +98,23 @@
 </div>
 
 @endsection
+
+@push('scripts')
+<script>
+function submitFormWithDisabilityType(disabilityType) {
+    // Set the "disability_type" input field in the form to the desired value
+    document.getElementById('disabilityTypeInput').value = disabilityType;
+    
+    // Submit the form
+    document.getElementById('searchForm').submit();
+}
+function submitFormWithStatusType(disabilityType) {
+    // Set the "disability_type" input field in the form to the desired value
+    document.getElementById('statusInput').value = disabilityType;
+    
+    // Submit the form
+    document.getElementById('searchForm').submit();
+}
+
+</script>
+@endpush

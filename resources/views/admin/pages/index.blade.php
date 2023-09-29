@@ -40,7 +40,7 @@
         <h1>
             <div style="display: flex; justify-content: space-between">
                 <span> </span>
-             <a href="{{ url('dashboard/form') }}"> <button type="button" class="btn search-button">Add New Applicant </button> </a>
+             <a href="{{ url('dashboard/form') }}"> <button type="button" class="btn search-button">नयाँ आवेदक थप्नुहोस् </button> </a>
             </div>
         </h1>
       
@@ -68,11 +68,11 @@
                                     <fieldset class="form-group">
                                         {{-- <input type="text" name="darta_number" class = "form-control" placeholder="Enter Darta Number" value={{ isset($request->darta_number) ? $request->darta_number : '' }}> --}}
                                        <select class="form-control" name="status" id='status'>
-                                          <option value={{ isset($request->status) ? $request->status : ''}}>{{ isset($request->status) ? $request->status : 'Select Status'}}</option>
-                                         <option value="New">New</option>
-                                         <option value="Admin Approved">Admin Approved</option>
-                                         <option value="Approved">Approved</option>
-                                         <option value="Rejected">Rejected</option>
+                                          <option value={{ isset($request->status) ? $request->status : ''}}>{{ isset($request->status) ? $request->status : 'स्थिति चयन गर्नुहोस्'}}</option>
+                                          <option value="">All</option>
+                                          <option value="New">New Applied</option>
+                                          <option value="Approved">Approved</option>
+                                          <option value="Rejected">Rejected</option>
                                         </select>
                                     </fieldset>
                                 </div>
@@ -80,7 +80,7 @@
                                     <fieldset class="form-group">
                                         {{-- <input type="text" name="darta_number" class = "form-control" placeholder="Enter Darta Number" value={{ isset($request->darta_number) ? $request->darta_number : '' }}> --}}
                                        <select class="form-control" name="disability_type" id='status'>
-                                          <option value={{ isset($request->disability_type) ? $request->disability_type : ''}}>{{ isset($request->disability_type) ? $request->disability_type : 'Select Disability Type'}}</option>
+                                          <option value={{ isset($request->disability_type) ? $request->disability_type : ''}}>{{ isset($request->disability_type) ? $request->disability_type : 'असक्षमता प्रकार चयन गर्नुहोस्'}}</option>
                                          <option value="A">A</option>
                                          <option value="A">Admin Approved</option>
                                          <option value="Approved">Approved</option>

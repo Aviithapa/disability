@@ -8,21 +8,20 @@ use App\Http\Requests\Applicant\CreateApplicantRequest;
 use App\Http\Requests\Applicant\UpdateApplicantRequest;
 use App\Models\ApplicantDetails;
 use App\Modules\Backend\ApplicantInformation\Repositories\ApplicantRepository as RepositoriesApplicantRepository;
+use App\Modules\Backend\DisabilityType\Repositories\DisabilityTypeRepository;
 use App\Modules\Backend\Logs\LogsRepository;
 use App\Modules\Framework\Request;
 use Carbon\Carbon;
-use Carbon\Exceptions\Exception as ExceptionsException;
-use Exception;
 use Illuminate\Support\Facades\Auth;
-use PDF;
 
 class AdminController extends AdminBaseController
 {
-    private $applicantController, $logRepository;
-    public function __construct(RepositoriesApplicantRepository $applicantController, LogsRepository $logRepository)
+    private $applicantController, $logRepository, $disabilityTypeRepository;
+    public function __construct(RepositoriesApplicantRepository $applicantController, LogsRepository $logRepository, DisabilityTypeRepository $disabilityTypeRepository)
     {
         $this->applicantController = $applicantController;
         $this->logRepository = $logRepository;
+        $this->disabilityTypeRepository = $disabilityTypeRepository;
     }
 
     public function dashboard()
@@ -36,10 +35,11 @@ class AdminController extends AdminBaseController
             $rejectedCount = $this->applicantController->getAll()->where('status', '=', 'rejected')->where('ward_no', '=',  Auth::user()->ward_no)->count();
             return view('ward-dashboard', compact('unverifiedCount', 'verifiedCount', 'rejectedCount', 'adminVerifiedCount'));
         }
-        $unverifiedCount = $this->applicantController->getAll()->where('IdNumber', '=', '');
-        $verifiedCount = $this->applicantController->getAll()->where('IdNumber', '!=', '');
+        $unverifiedCount = $this->applicantController->getAll()->where('status', '=', 'new');
+        $verifiedCount = $this->applicantController->getAll()->where('status', '=', 'approved');
+        $rejectedCount = $this->applicantController->getAll()->where('status', '=', 'rejected')->count();
 
-        return view('welcome', compact('unverifiedCount', 'verifiedCount'));
+        return view('welcome', compact('unverifiedCount', 'verifiedCount', 'rejectedCount'));
     }
     public function index(Request $request)
     {
@@ -77,7 +77,7 @@ class AdminController extends AdminBaseController
 
     public function printIndex(Request $request)
     {
-        $applicant = $this->applicantController->getAll()->where('IdNumber', '!=', '');
+        $applicant = ApplicantDetails::query()->where('status', '=', 'approved')->paginate(2);
         if ($request->ajax()) {
             $output = "";
             $products = ApplicantDetails::where('full_name', 'LIKE', '%' . $request->search . "%")
@@ -157,8 +157,9 @@ class AdminController extends AdminBaseController
     {
         $data = $this->applicantController->findById($id);
         $profile_logs = $this->logRepository->getAll()->where('applicant_id', $id);
-        // dd($data);
-        return view('admin.pages.view-applicant', compact('data', 'profile_logs'));
+        $disability_type = $this->disabilityTypeRepository->getAll()->where('type', 'nature_of_disability');
+        $disability_group = $this->disabilityTypeRepository->getAll()->where('type', 'severity_of_disability');
+        return view('admin.pages.applicant', compact('data', 'profile_logs', 'disability_type', 'disability_group'));
     }
 
     public function edit($id)

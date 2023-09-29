@@ -192,7 +192,7 @@
                                                     <input name="guardian_number" class="form-control" value="{{ old('guardian_number') }}" id="basicInput">
                                                 </fieldset>
                                             </div>
-                                            @if(Auth::user()->role === 'admin')
+                                            {{-- @if(Auth::user()->role === 'admin')
                                             <div class="col-lg-4">
                                                 <fieldset class="form-group">
                                                     <label> अपाङ्गताको प्रकारः</label>
@@ -205,7 +205,7 @@
                                                     <input name="incapacitated_base_disability_type" value="{{ old('incapacitated_base_disability_type') }}" class="form-control" id="basicInput">
                                                 </fieldset>
                                             </div>
-                                            @endif
+                                            @endif --}}
                                             <div class="col-lg-12">
                                                 <fieldset class="form-group">
                                                     <label>शरीरको अङ्ग, संरचना, प्रणालीमा आएको क्षतिको विवरणः</label>

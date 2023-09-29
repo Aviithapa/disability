@@ -53,7 +53,6 @@ Route::middleware(['auth'])->group(
         Route::apiResource('/dashboard/disability-type', DisabilityTypeController::class);
         Route::get('/dashboard/disability-type/create', [DisabilityTypeController::class, 'show'])->name('disability-type.create');
         Route::get('/dashboard/edit/disability-type/{id}', [DisabilityTypeController::class, 'edit'])->name('disability-type.edit');
-
         Route::apiResource('/dashboard/disability-group', DisabilityGroupController::class);
         Route::get('/dashboard/disability-group/create', [DisabilityGroupController::class, 'show'])->name('disability-group.create');
         Route::get('/dashboard/edit/disability-group/{id}', [DisabilityGroupController::class, 'edit'])->name('disability-group.edit');
