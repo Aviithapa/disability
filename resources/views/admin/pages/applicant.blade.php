@@ -231,12 +231,11 @@
                                                         <div class="col-lg-6">
                                                             <fieldset class="form-group">
                                                                 <label> अपाङ्गताको प्रकारः</label>
-                                                                <select name="disability_type" class="form-control" value="{{ old('disability_type') }}" id="basicInput" required>
+                                                                <select name="disability_type_id" class="form-control" value="{{ old('disability_type_id') }}" id="basicInput" required>
                                                                     <option>Select</option>
-                                                                    @foreach($disability_type as $type)
+                                                                    @foreach($disability_group as $type)
                                                                          <option value="{{ $type->id }}">{{ $type->name_nepali }}</option>
                                                                     @endforeach
-
                                                                 </select>
                                                                  @if($errors->any())
                                                                 <div style="color:red !important">
@@ -248,11 +247,12 @@
                                                         <div class="col-lg-6">
                                                             <fieldset class="form-group">
                                                                 <label> अशक्तताको आधारमा अपाङ्गताको प्रकारः</label>
-                                                                <select name="incapacitated_base_disability_type" value="{{ old('incapacitated_base_disability_type') }}" class="form-control" id="basicInput" required>
+                                                                <select name="incapacitated_base_disability_type_id" value="{{ old('incapacitated_base_disability_type_id') }}" class="form-control" id="basicInput" required>
                                                                     <option>Select</option>
-                                                                  @foreach($disability_group as $type)
+                                                                       @foreach($disability_type as $type)
                                                                          <option value="{{ $type->id }}">{{ $type->name_nepali }}</option>
                                                                     @endforeach
+                                                                 
                                                                 </select>
                                                                 @if($errors->any())
                                                                 <div style="color:red !important">
@@ -320,76 +320,7 @@
                                                 </div>
                                             </div>
 
-                                            <!-- profile -->
-                                            <div id="projects" class="tab-pane">
-                                                <div class="row m-t-10">
-                                                    <div class="col-md-12">
-                                                        <div class="table-responsive">
-                                                            <table class="table table-bordered mb-0">
-                                                                <thead>
-                                                                    <tr>
-                                                                        <th>#</th>
-                                                                        <th>Project Name</th>
-                                                                        <th>Start Date</th>
-                                                                        <th>Due Date</th>
-                                                                        <th>Status</th>
-                                                                        <th>Assign</th>
-                                                                    </tr>
-                                                                </thead>
-                                                                <tbody>
-                                                                    <tr>
-                                                                        <td>1</td>
-                                                                        <td>Velonic Admin</td>
-                                                                        <td>01/01/2015</td>
-                                                                        <td>07/05/2015</td>
-                                                                        <td><span class="badge bg-info">Work
-                                                                                in Progress</span></td>
-                                                                        <td>Techzaa</td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>2</td>
-                                                                        <td>Velonic Frontend</td>
-                                                                        <td>01/01/2015</td>
-                                                                        <td>07/05/2015</td>
-                                                                        <td><span
-                                                                                class="badge bg-success">Pending</span>
-                                                                        </td>
-                                                                        <td>Techzaa</td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>3</td>
-                                                                        <td>Velonic Admin</td>
-                                                                        <td>01/01/2015</td>
-                                                                        <td>07/05/2015</td>
-                                                                        <td><span class="badge bg-pink">Done</span>
-                                                                        </td>
-                                                                        <td>Techzaa</td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>4</td>
-                                                                        <td>Velonic Frontend</td>
-                                                                        <td>01/01/2015</td>
-                                                                        <td>07/05/2015</td>
-                                                                        <td><span class="badge bg-purple">Work
-                                                                                in Progress</span></td>
-                                                                        <td>Techzaa</td>
-                                                                    </tr>
-                                                                    <tr>
-                                                                        <td>5</td>
-                                                                        <td>Velonic Admin</td>
-                                                                        <td>01/01/2015</td>
-                                                                        <td>07/05/2015</td>
-                                                                        <td><span class="badge bg-warning">Coming
-                                                                                soon</span></td>
-                                                                        <td>Techzaa</td>
-                                                                    </tr>
-
-                                                                </tbody>
-                                                            </table>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                          
                                         </div>
                                     </div>
                                 </div>

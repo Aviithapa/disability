@@ -16,8 +16,8 @@ class UpdateApplicantRequest extends FormRequest
     {
         return [
 
-            'disability_type' => ['required', 'string', 'max:255'],
-            'incapacitated_base_disability_type' => ['required', 'string', 'max:255'],
+            'disability_type_id' => ['required', 'string', 'max:255'],
+            'incapacitated_base_disability_type_id' => ['required', 'string', 'max:255'],
             'decision_image' => ['required', 'string', 'max:255'],
 
         ];

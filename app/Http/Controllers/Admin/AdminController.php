@@ -47,7 +47,7 @@ class AdminController extends AdminBaseController
 
         if ($request->isMethod('post')) {
             $query =
-                ApplicantDetails::query();
+                ApplicantDetails::query()->with('disability');
 
             if ($request->full_name != null) {
                 $query->where('full_name', 'LIKE', '%' . $request->full_name . "%");
@@ -66,42 +66,36 @@ class AdminController extends AdminBaseController
         }
 
         $data =
-            ApplicantDetails::query();
+            ApplicantDetails::query()->with('disability');
 
         if ($role === 'ward') {
             $data->where('ward_no', '=',  Auth::user()->ward_no);
         }
         $applicant = $data->orderBy('created_at', 'desc')->paginate(10);
+
+
         return view('admin.pages.index', compact('applicant'));
     }
 
     public function printIndex(Request $request)
     {
-        $applicant = ApplicantDetails::query()->where('status', '=', 'approved')->paginate(2);
-        if ($request->ajax()) {
-            $output = "";
-            $products = ApplicantDetails::where('full_name', 'LIKE', '%' . $request->search . "%")
-                ->orwhere('citizenship_number', 'LIKE', '%' . $request->search . "%")
-                ->orWhere('IdNumber', 'LIKE', '%' . $request->search . "%")
-                ->get();
+        $applicant = ApplicantDetails::query()->where('status', '=', 'approved')->paginate(10);
+        if ($request->isMethod('post')) {
+            $query =
+                ApplicantDetails::query()->where('status', '=', 'approved');
 
-            // return $products;
-            if ($products) {
-                foreach ($products as $key => $product) {
-                    $output .= '<tr>' .
-                        '<td>' . ++$key . '</td>' .
-                        '<td>' . $product->full_name . '</td>' .
-                        '<td>' . $product->disability_type . '</td>' .
-                        '<td>' . $product->disability_cause . '</td>' .
-                        '<td>' . $product->citizenship_number . '</td>' .
-                        '<td>' . $product->dob_nep . '</td>' .
-                        '<td>' . $product->IdNumber . '</td>' .
-                        '<td><a href=' . url('show/' . $product->id) . '><span class="label label-success">Print</span></a> </td>' .
-                        '</tr>';
-                }
-                return Response($output);
+            if ($request->full_name != null) {
+                $query->where('full_name', 'LIKE', '%' . $request->full_name . "%");
             }
+            if ($request->status != null) {
+                $query->where('status', 'LIKE', '%' . $request->status . "%");
+            }
+
+            $applicant = $query->orderBy('created_at', 'desc')->paginate(10);
+
+            return view('admin.pages.printIndex', compact('applicant', 'request'));
         }
+
         return view('admin.pages.printIndex', compact('applicant'));
     }
 

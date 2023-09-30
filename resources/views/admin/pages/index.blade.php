@@ -139,7 +139,7 @@
                                           <tr>
                                           <td>{{ $pageRelativeIndex }}</td>
                                           <td>{{ $item->full_name }}</></td>
-                                          <td>{{ $item->disability_type }}</td>
+                                          <td>{{ isset($item->disability_type_id) ? $item->disability->name_nepali  :'' }}</td>
                                           <td>{{ $item->disability_cause }}</td>
                                           <td style="text-transfor: capitilized;">{{ $item->status }}</td>
                                           <td>{{ $item->dob_nep }}</td>

@@ -50,7 +50,9 @@ class ApplicantDetails extends Model
         'citizenship_image',
         'status',
         'ward_no',
-        'decision_image'
+        'decision_image',
+        'disability_type_id',
+        'incapacitated_base_disability_type_id',
     ];
 
     public function getProfileImage()
@@ -114,5 +116,15 @@ class ApplicantDetails extends Model
         } else {
             return imageNotFound('small');
         }
+    }
+
+    public function disability()
+    {
+        return $this->belongsTo(DisabilityType::class, 'disability_type_id');
+    }
+
+    public function disabilitySeverity()
+    {
+        return $this->belongsTo(DisabilityType::class, 'incapacitated_base_disability_type_id');
     }
 }

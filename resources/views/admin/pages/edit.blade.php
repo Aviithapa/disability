@@ -177,7 +177,7 @@
                                                     <input name="guardian_number" class="form-control" id="basicInput" value="{{ $data->guardian_number }}">
                                                 </fieldset>
                                             </div>
-                                            <div class="col-lg-4">
+                                            {{-- <div class="col-lg-4">
                                                 <fieldset class="form-group">
                                                     <label>नेपाल सरकारको परिभाषा र वर्गिकरण अनुसार अपाङ्गताको प्रकारः</label>
                                                     <input name="disability_type" class="form-control" id="basicInput" value="{{ $data->disability_type }}">
@@ -188,7 +188,7 @@
                                                     <label>नेपाल सरकारको परिभाषा र वर्गिकरण अनुसार अशक्तताको आधारमा अपाङ्गताको प्रकारः</label>
                                                     <input name="incapacitated_base_disability_type" class="form-control" id="basicInput" value="{{ $data->incapacitated_base_disability_type }}">
                                                 </fieldset>
-                                            </div>
+                                            </div> --}}
                                             <div class="col-lg-12">
                                                 <fieldset class="form-group">
                                                     <label>शरीरको अङ्ग, संरचना, प्रणालीमा आएको क्षतिको विवरणः</label>

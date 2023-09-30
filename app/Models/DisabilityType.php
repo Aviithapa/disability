@@ -17,4 +17,9 @@ class DisabilityType extends Model
         'type',
         'color'
     ];
+
+    public function applicantDetails()
+    {
+        return $this->hasMany(ApplicantDetails::class, 'disability_type_id');
+    }
 }

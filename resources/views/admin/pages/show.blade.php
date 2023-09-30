@@ -40,7 +40,7 @@
                            width: 60%;
                            height: 1050px !important;
                            padding: 10px;">
-                              <div class="nepali-card" style="border: 2px solid black; padding-left: 15px; padding-top:20px;  height: '794px !important'; float:left; min-height:440px">
+                              <div class="nepali-card" style="border: 2px solid black; padding-left: 15px; padding-top:20px;  height: '200px !important'; float:left; min-height:200px">
                                   <div class="row" style="display: flex;
                                   -ms-flex-wrap: wrap;
                                   flex-wrap: wrap;">
@@ -50,30 +50,21 @@
                                           
                                           </span>
                                      </div>
-                                     <div class="col-lg-6" style="text-align: center; justify-content: center;  color:#DC143C; font-weight: 800;   flex: 0 0 50%;
+                                     <div class="col-lg-6" style="text-align: center; justify-content: center;  color:#000; font-weight: 800;   flex: 0 0 50%;
                                      max-width: 55%;" >
                                         प्रदेश सरकार  </br> सुदूरपश्चिम प्रदेश </br> दशरथचन्द नगरपालिका बैतडी </br>
-                                        
-
                                     </div>
-                                    <div class="col-lg-3" style="flex: 0 0 20%; max-width: 45%; justify-content: flex-end;
-    display: flex;">
+                                    <div class="col-lg-3" style="flex: 0 0 20%; max-width: 45%; justify-content: flex-end; display: flex;">
                                         <div class="img" style=" height:80px; width:80px;">
-                                           {!! \SimpleSoftwareIO\QrCode\Facades\QrCode::size(80)->generate('Name : '.$applicant->IdNumber. 'Disability type : '  .  $applicant->disability_type. ' Dob : ' . $applicant->dob_nep )!!}
+                                            <img src="{{ $applicant->getProfileImage() }}" height="100" width="100px">
                                         </div>
                                     </div>
                                     <div class="identity" style="border: 2px solid black; color:white;  margin: auto;
                                     width: 70%;
                                     padding: 10px;
                                     font-size: 16px;
-                                    text-align:center; background :   @if( $applicant->disability_type === 'A')
-            red;
-        @elseif($applicant->disability_type === 'B')
-            green;
-        @elseif($applicant->disability_type === 'C')
-            blue;
-        @elseif($applicant->disability_type === 'D')
-            yellow;
+                                    text-align:center; background :  @if($applicant->disability_type_id) 
+                                                {{ $applicant->disability->color }}  
         @else
             none; /* Default background color */
         @endif">
@@ -81,7 +72,7 @@
                                     </div>
                                     <div class="col-lg-12" style="flex: 0 0 100%; max-width: 100%; font-size:12px; margin-top: 15px !important; line-height: 1.6;">
                                         <span>परिचयपत्र नं :-    <span style="font-weight: 700; text-transform: uppercase;"> {{ $applicant->IdNumber }} </span> </span> </br>
-                                         <span>परिचयपत्रको प्रकार :-   <span style="font-weight: 700; text-transform: uppercase;">   {{ $applicant->disability_type }} </span></span> </br>
+                                         <span>परिचयपत्रको प्रकार :-   <span style="font-weight: 700; text-transform: uppercase;">   {{ $applicant->disability->name_nepali }} </span></span> </br>
                                         <span>नाम,थर : -  <span style="font-weight: 700"> {{ $applicant->full_name_nep  }}</span></span></br>
                                         <span>ठेगानाः- सुदूरपश्चिम प्रदेश बैतडी जिल्ला दशरथचन्द नगरपालिका वडा नं <span style="font-weight: 700"> {{ $applicant->full_name_nep  }}</span></span> </br>
                                         <div style="display:flex; line-height: 1.4;" >
@@ -101,15 +92,11 @@
                                             <span>रक्त समूह :  <span style="font-weight: 700">{{ $applicant->blood_group  }} </span></span> </br>
                                           </div>
                                         </div>
-                                        <span style="line-height: 1.4;">अपाङ्गताको किसिम : प्रकृतिको आधारमा  <span style="font-weight: 700">{{ $applicant->disability_type }}</span> गम्भीरता:-   <span style="font-weight: 700"> {{ $applicant->incapacitated_base_disability_type }} </span> </span> </br>
+                                        <span style="line-height: 1.4;">अपाङ्गताको किसिम : प्रकृतिको आधारमा  <span style="font-weight: 700">{{ $applicant->disability->name_nepali }}</span> गम्भीरता:-   <span style="font-weight: 700"> {{ $applicant->disabilitySeverity->name_nepali }} </span> </span> </br>
                                         <span>बाबु/आमा वा संरक्षकको नाम :-   <span style="font-weight: 700">{{ $applicant->guardian }}</span></span> </br>
                                         <span style="line-height: 1.4;">परिचयपत्र वाहकको दस्तखत :   </span> </br>
                                     </div>
-                                    <div class="col-lg-3" style="flex: 0 0 18%; max-width: 50%; margin-top:10px !important">
-                                        <div class="img" style="border: 2px solid black; height:100px; width:100px;">
-                                            <img src="{{ $applicant->getProfileImage() }}" height="100" width="100px">
-                                        </div>
-                                    </div>
+                                   
                                     <div class="col-lg-9 mt-2" style="flex: 0 0 75%; max-width: 55%; margin-top:10px !important; padding-left: 45px; line-height:1.4;">
                                         <span style="text-decoration: underline;"> परिचयपत्र प्रमाणित गर्ने :  </span> </br>                            
                                         <span> हस्ताक्षर :-  </span> </br>
@@ -197,7 +184,7 @@
                            width: 60%;
                            height: '793.7px'
                            padding: 10px;">
-                              <div class="nepali-card" style="border: 2px solid black; padding-left: 15px; padding-top:20px;  float:left; min-height:440px">
+                              <div class="nepali-card" style="border: 2px solid black; padding-left: 15px; padding-top:20px;  float:left; min-height:200px">
                                   <div class="row" style="display: flex;
                                   -ms-flex-wrap: wrap;
                                   flex-wrap: wrap;">
@@ -223,14 +210,8 @@
                                     width: 70%;
                                     padding: 10px;
                                     font-size: 16px;
-                                    text-align:center; background :  @if( $applicant->disability_type === 'A')
-            red;
-        @elseif($applicant->disability_type === 'B')
-            green;
-        @elseif($applicant->disability_type === 'C')
-            blue;
-        @elseif($applicant->disability_type === 'D')
-            yellow;
+                                    text-align:center; background :  @if($applicant->disability_type_id) 
+                                                {{ $applicant->disability->color }}  
         @else
             none; /* Default background color */
         @endif">
@@ -238,12 +219,12 @@
                                     </div>
                                     <div class="col-lg-12" style="flex: 0 0 100%; max-width: 100%; font-size:12px; margin-top: 15px !important; line-height: 1.6;">
                                         <span>ID Card No :-    <span style="font-weight: 700; text-transform: uppercase;"> {{ $applicant->IdNumber }} </span> </span> </br>
-                                         <span> ID Card Type :-   <span style="font-weight: 700; text-transform: uppercase;">   {{ $applicant->disability_type }} </span></span> </br>
-                                        <span>Full Name Of Person : -  <span style="font-weight: 700"> {{ $applicant->full_name_nep  }}</span></span></br>
-                                        <span>Address : - Sudurpacshim Province Baitadi District Dashrathchand MP Ward no  <span style="font-weight: 700"> {{ $applicant->full_name_nep  }}</span></span> </br>
+                                         <span>ID Card Type :-   <span style="font-weight: 700; text-transform: uppercase;">   {{ $applicant->disability->name_english }} </span></span> </br>
+                                        <span>Full Name Of Person : -  <span style="font-weight: 700"> {{ $applicant->full_name }}</span></span></br>
+                                        <span>Address : - Sudurpacshim Province Baitadi District Dashrathchand MP Ward no  <span style="font-weight: 700"> {{ $applicant->ward_no  }}</span></span> </br>
                                         <div style="display:flex; line-height: 1.4;" >
                                             <div class="col-lg-6" style="flex: 0 0 50%; max-width: 50%;" >
-                                                <span>Date Of Birth : <span style="font-weight: 700"> {{ $applicant->dob_nep  }} </span></span> 
+                                                <span>Date Of Birth : <span style="font-weight: 700"> {{ $applicant->dob_eng  }} </span></span> 
                                            </div>
                                            <div class="col-lg-6" style="flex: 0 0 50%; max-width: 50%;" >
                                             <span>Citizenship No :  <span style="font-weight: 700">{{ $applicant->citizenship_number  }} </span></span> 
@@ -258,15 +239,15 @@
                                             <span>Blood Group :  <span style="font-weight: 700">{{ $applicant->blood_group  }} </span></span> </br>
                                           </div>
                                         </div>
-                                        <span style="line-height: 1.4;">Type of Disability : on the basis of nature  <span style="font-weight: 700">{{ $applicant->disability_type }}</span> on the basis of Severity:-   <span style="font-weight: 700"> {{ $applicant->incapacitated_base_disability_type }} </span> </span> </br>
+                                        <span style="line-height: 1.4;">Type of Disability : on the basis of nature  <span style="font-weight: 700">{{ $applicant->disability->name_english }}</span> on the basis of Severity:-   <span style="font-weight: 700"> {{ $applicant->disabilitySeverity->name_english }} </span> </span> </br>
                                         <span>Father Name / Mother Name of Guardian :   <span style="font-weight: 700">{{ $applicant->guardian }}</span></span> </br>
                                         <span style="line-height: 1.4;">Signature Of Id Holders :  </span> </br>
                                     </div>
-                                    <div class="col-lg-3" style="flex: 0 0 18%; max-width: 50%; margin-top:10px !important">
+                                    {{-- <div class="col-lg-3" style="flex: 0 0 18%; max-width: 50%; margin-top:10px !important">
                                         <div class="img" style="border: 2px solid black; height:100px; width:100px;">
                                             <img src="{{ $applicant->getProfileImage() }}" height="100" width="100px">
                                         </div>
-                                    </div>
+                                    </div> --}}
                                     <div class="col-lg-9 mt-2" style="flex: 0 0 75%; max-width: 55%; margin-top:10px !important; padding-left: 45px; line-height:1.4;">
                                         <span style="text-decoration: underline;">Approved By :  </span> </br>
                                         <span>Signature :-  </span> </br>

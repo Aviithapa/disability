@@ -128,14 +128,14 @@
                                             </div>
                                             <div class="col-lg-4">
                                                 <fieldset class="form-group">
-                                                    <label>जन्म मिति</label>
-                                                    <input name="dob_nep" class="form-control" value="{{ old('dob_nep') }}" id="basicInput" type="text">
+                                                    <label>जन्म मिति (YYYY-MM-DD)</label>
+                                                    <input name="dob_nep" class="form-control" value="{{ old('dob_nep') }}" id="basicInput" type="text" placeholder="YYYY-MM-DD">
                                                 </fieldset>
                                             </div>
                                             <div class="col-lg-4">
                                                 <fieldset class="form-group">
-                                                    <label>Date of birth English </label>
-                                                    <input name="dob_eng" class="form-control" id="basicInput" value="{{ old('dob_eng') }}" type="text">
+                                                    <label>Date of birth English (YYYY-MM-DD)</label>
+                                                    <input name="dob_eng" class="form-control" id="basicInput" value="{{ old('dob_eng') }}" type="text" placeholder="YYYY-MM-DD">
                                                 </fieldset>
                                             </div>
                                             <div class="col-lg-4">
@@ -147,7 +147,7 @@
                                             <div class="col-lg-4">
                                                 <fieldset class="form-group">
                                                     <label>प्रदेशः</label>
-                                                    <input name="pardesh" class="form-control" value="{{ old('pardesh') }}" id="basicInput">
+                                                    <input name="pardesh" class="form-control" value="Sudurpashchim Province" id="basicInput">
                                                 </fieldset>
                                             </div>
                                             <div class="col-lg-4">
@@ -192,20 +192,6 @@
                                                     <input name="guardian_number" class="form-control" value="{{ old('guardian_number') }}" id="basicInput">
                                                 </fieldset>
                                             </div>
-                                            {{-- @if(Auth::user()->role === 'admin')
-                                            <div class="col-lg-4">
-                                                <fieldset class="form-group">
-                                                    <label> अपाङ्गताको प्रकारः</label>
-                                                    <input name="disability_type" class="form-control" value="{{ old('disability_type') }}" id="basicInput">
-                                                </fieldset>
-                                            </div>
-                                            <div class="col-lg-4">
-                                                <fieldset class="form-group">
-                                                    <label> अशक्तताको आधारमा अपाङ्गताको प्रकारः</label>
-                                                    <input name="incapacitated_base_disability_type" value="{{ old('incapacitated_base_disability_type') }}" class="form-control" id="basicInput">
-                                                </fieldset>
-                                            </div>
-                                            @endif --}}
                                             <div class="col-lg-12">
                                                 <fieldset class="form-group">
                                                     <label>शरीरको अङ्ग, संरचना, प्रणालीमा आएको क्षतिको विवरणः</label>
@@ -271,11 +257,7 @@
                                             <div class="col-lg-12">
                                                 <fieldset class="form-group">
                                                     <label>शैक्षिक योग्यता</label>
-                                                    <select class="form-control" name="education_level" value="{{ old('eduaction_level') }}" required>
-                                                        <option>Select</option>
-                                                        <option value="Yes">Yes</option>
-                                                        <option value="No">No</option>
-                                                    </select>
+                                                    <input name="education_level" class="form-control" value="{{ old('education_level') }}" id="basicInput">
                                                 </fieldset>
                                             </div>
                                             <div class="col-lg-12">
@@ -291,7 +273,6 @@
                                                 </fieldset>
                                             </div>
                                         </div>
-
                                            <div class="row" style="display: flex; justify-content:space-between;">
                                               
                                             <div class="col-lg-3">

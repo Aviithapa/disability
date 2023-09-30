@@ -41,7 +41,7 @@ Route::get('/dashboard/edit/{id}', [AdminController::class, 'edit'])->middleware
 
 Route::get('/dashboard/search', [AdminController::class, 'index'])->middleware(['auth'])->name('search');
 Route::get('/dashboard/generateNumber/{id}', [AdminController::class, 'generateCardNumber'])->middleware(['auth'])->name('generateCardNumber');
-Route::get('/dashboard/printIndex', [AdminController::class, 'printIndex'])->middleware(['auth'])->name('printIndex');
+Route::match(['get', 'post'], '/dashboard/printIndex', [AdminController::class, 'printIndex'])->middleware(['auth'])->name('printIndex');
 
 
 Route::get('/ward/dashboard', [AdminController::class, 'dashboard'])->middleware(['auth'])->name('ward.dashboard');
