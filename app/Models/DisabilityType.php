@@ -20,6 +20,11 @@ class DisabilityType extends Model
 
     public function applicantDetails()
     {
-        return $this->hasMany(ApplicantDetails::class, 'disability_type_id');
+        return $this->hasMany(ApplicantDetails::class, 'disability_type_id', 'id')->where('type', 'severity_of_disability');
+    }
+
+    public function applicantDetailsBasedOnNatureOfDisability()
+    {
+        return $this->hasMany(ApplicantDetails::class, 'incapacitated_base_disability_type_id', 'id')->where('type', 'nature_of_disability');
     }
 }

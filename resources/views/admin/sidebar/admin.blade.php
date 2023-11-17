@@ -26,7 +26,7 @@
              <li class="treeview {{ (request()->is('dashboard/*')) ? (request()->is('dashboard/printIndex') ) ? '' : 'active' :''  }}"> <a href="#"> <i class="icon-grid"></i> <span>अपाङ्गता परिचय पत्र</span> <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i> </span> </a>
                 <ul class="treeview-menu">
                      <li class="{{ (request()->is('dashboard/*')) ? (request()->is('dashboard/printIndex') || request()->is('dashboard/disability-type') || request()->is('dashboard/disability-group')) ? '' : 'active' :''  }}">
-                        <a href="{{ route('applicantData') }}">
+                        <a href="{{ route('applicant.index') }}">
                             <i class="icon-book-open"></i> <span>अपाङ्गता परिचय पत्र</span>
                         </a>
                     </li>
@@ -44,8 +44,8 @@
             </li>
              <li class="treeview {{ (request()->is('dashboard/printIndex')) || (request()->is('dashboard/printed'))  ? 'active' :''  }}"> <a href="#"> <i class="icon-grid"></i> <span>अपाङ्गता कार्ड</span> <span class="pull-right-container"> <i class="fa fa-angle-left pull-right"></i> </span> </a>
                 <ul class="treeview-menu">
-                     <li class="{{ (request()->is('dashboard/printIndex')) ? 'active' :''  }}">
-                        <a href="{{ route('printIndex') }}">
+                     <li class="{{ (request()->is('print')) ? 'active' :''  }}">
+                        <a href="{{ route('print.index') }}">
                             <i class="icon-book-open"></i> <span>छाप्नुहोस्</span>
                         </a>
                     </li>

@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\DisabilityType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -124,5 +125,19 @@ if (!function_exists('imageNotFound')) {
                 //return asset('images/default.png');
 
         }
+    }
+}
+
+
+if (!function_exists('getDisabilityName')) {
+    /**
+     * Generates an asset path for the uploads.
+     * @param  $id
+     * @return string
+     */
+    function getDisabilityName($id)
+    {
+        $data = DisabilityType::all()->where('id', $id)->first();
+        return $data->name_nepali;
     }
 }

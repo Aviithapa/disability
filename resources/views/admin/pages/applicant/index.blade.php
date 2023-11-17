@@ -1,4 +1,4 @@
-@extends('layout.app')
+@extends('admin.layout.app')
 
 @section('content')
 <style>
@@ -40,7 +40,7 @@
         <h1>
             <div style="display: flex; justify-content: space-between">
                 <span> </span>
-             <a href="{{ url('dashboard/form') }}"> <button type="button" class="btn search-button">नयाँ आवेदक थप्नुहोस् </button> </a>
+             <a href="{{ route('applicant.create') }}"> <button type="button" class="btn search-button">नयाँ आवेदक थप्नुहोस् </button> </a>
             </div>
         </h1>
       
@@ -51,22 +51,20 @@
 
             <div class="box box-info">
                     <div class="box-header with-border p-t-1">
-                        <form method="POST" 
-                        action="{{route('applicantData')}}" id="searchForm">
+                       <form method="POST" action="{{route('applicant.index')}}" id="searchForm">
                             @csrf
 
 
                             <div class="row">
 
-                                 <div class="col-lg-4">
+                                 <div class="col-lg-2">
                                     <fieldset class="form-group">
-                                        <input type="text" name="full_name" class = "form-control" placeholder="Enter Full Name" id="name" value={{ isset($request->full_name) ? $request->full_name : '' }}>
+                                        <input type="text" name="full_name" class ="form-control" placeholder="Enter Full Name" id="name" value={{ isset($request) ? $request->full_name : '' }}>
                                     </fieldset>   
                                 </div>
 
                                 <div class="col-lg-2">
                                     <fieldset class="form-group">
-                                        {{-- <input type="text" name="darta_number" class = "form-control" placeholder="Enter Darta Number" value={{ isset($request->darta_number) ? $request->darta_number : '' }}> --}}
                                        <select class="form-control" name="status" id='status'>
                                           <option value={{ isset($request->status) ? $request->status : ''}}>{{ isset($request->status) ? $request->status : 'स्थिति चयन गर्नुहोस्'}}</option>
                                           <option value="">All</option>
@@ -76,15 +74,24 @@
                                         </select>
                                     </fieldset>
                                 </div>
+                                <div class="col-lg-2">
+                                    <fieldset class="form-group">
+                                       <select class="form-control" name="serverity_disability_type" id='serverity_disability_type'>
+                                          <option value={{ isset($request->serverity_disability_type) ? $request->serverity_disability_type : ''}}>{{ isset($request->serverity_disability_type) ? getDisabilityName($request->serverity_disability_type) : 'असक्षमता प्रकार चयन गर्नुहोस्'}}</option>
+                                          @foreach($severity_types as $disability)
+                                            <option value="{{ $disability->id }}">{{ $disability->name_nepali }}</option>
+                                         @endforeach
+                                        </select>
+                                    </fieldset>
+                                </div>
+                               
                                   <div class="col-lg-2">
                                     <fieldset class="form-group">
-                                        {{-- <input type="text" name="darta_number" class = "form-control" placeholder="Enter Darta Number" value={{ isset($request->darta_number) ? $request->darta_number : '' }}> --}}
                                        <select class="form-control" name="disability_type" id='status'>
-                                          <option value={{ isset($request->disability_type) ? $request->disability_type : ''}}>{{ isset($request->disability_type) ? $request->disability_type : 'असक्षमता प्रकार चयन गर्नुहोस्'}}</option>
-                                         <option value="A">A</option>
-                                         <option value="A">Admin Approved</option>
-                                         <option value="Approved">Approved</option>
-                                         <option value="Rejected">Rejected</option>
+                                          <option value={{ isset($request->disability_type) ? $request->disability_type : ''}}>{{ isset($request->disability_type) ? getDisabilityName($request->disability_type) : 'असक्षमता प्रकार चयन गर्नुहोस्'}}</option>
+                                          @foreach($disability_types as $disability)
+                                            <option value="{{ $disability->id }}">{{ $disability->name_nepali }}</option>
+                                         @endforeach
                                         </select>
                                     </fieldset>
                                 </div>
@@ -100,13 +107,6 @@
                             <button type="submit" class="btn search-button">
                                 Search</button>
                                 </div>
-                            {{-- <div class="col-lg-2" >
-                               <button type="button" class="btn reset-button" onclick="resetForm()">
-                                Reset
-                               </button>
-                            </div> --}}
-                          
-
                         </form>
                     </div>
                     </div>
@@ -144,14 +144,13 @@
                                           <td style="text-transfor: capitilized;">{{ $item->status }}</td>
                                           <td>{{ $item->dob_nep }}</td>
                                           <td>
-                                            <a href="{{ url('dashboard/view/'.$item->id) }}" title="view"><span class="label label-success"><i class="fa fa-eye"></i></span></a>
+                                            <a href="{{ url('applicant/'.$item->id) }}" title="view"><span class="label label-success"><i class="fa fa-eye"></i></span></a>
                                              @if(Auth::user()->role === 'admin' || $item->status === 'rejected')
-                                            <a href="{{ url('dashboard/edit/'.$item->id) }}" title="edit"><span class="label label-danger"><i class="fa fa-pencil"></i></span></a>
+                                            <a href="{{ url('applicant/'.$item->id .'/edit') }}" title="edit"><span class="label label-danger"><i class="fa fa-pencil"></i></span></a>
                                             @endif
                                             @if(Auth::user()->role === 'admin' && $item->status === 'approved' )
-                                            <a href="{{ url('dashboard/show/'.$item->id) }}" title="Print"><span class="label label-warning"><i class="fa fa-print"></i></span></a>
+                                            <a href="{{ url('applicant/show/'.$item->id) }}" title="Print"><span class="label label-warning"><i class="fa fa-print"></i></span></a>
                                             @endif
-                                            {{-- <a href="{{ url('/dashboard/generateNumber/'.$item->id) }}"><span class="label label-success">Generate Number</span></a> --}}
                                         </td>
                                           </tr>
                                           @endforeach
@@ -180,20 +179,4 @@
 
 @push('scripts')
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-
-    <script>
-        function resetForm() {
-            // Get form element
-            var form = document.getElementById('searchForm');
-
-          document.getElementById('name').value = '';
-    document.getElementById('regratation_date').value = '';
-
-    // Reset select element
-    document.getElementById('status').value = '';
-            // Submit the form (optional)
-         document.getElementById('searchForm').submit();
-        }
-</script>
-
 @endpush

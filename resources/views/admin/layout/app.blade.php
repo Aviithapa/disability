@@ -6,20 +6,19 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title></title>
-    @include('layout.style')
+    @include('admin.layout.style')
     @stack('styles')
 </head>
 <!-- END HEAD -->
 <!-- BEGIN BODY -->
 <body class="skin-blue sidebar-mini">
-@include('layout.header')
+@include('admin.layout.header')
 @switch(Auth::user()->role)
     @case('ward')
-        @include('layout.ward-sidebar')
+        @include('admin.sidebar.ward')
         @break
     @case('admin')
-          @include('layout.sidebar')
-    
+          @include('admin.sidebar.admin')
         @break
     @default
         
@@ -30,8 +29,8 @@
 
 @yield('content')
 <!-- END CONTAINER -->
-@include('layout.footer')
-@include('layout.script')
+@include('admin.layout.footer')
+@include('admin.layout.script')
 @stack('scripts')
 </body>
 </html>

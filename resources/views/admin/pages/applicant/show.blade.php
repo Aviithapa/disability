@@ -1,5 +1,5 @@
 
-    @extends('layout.app')
+    @extends('admin.layout.app')
 
 @section('content')
     
@@ -52,7 +52,7 @@
                                     <div class="col-sm-6">
                                         <div class="d-flex justify-content-end align-items-center gap-2">
                                         
-                                                <a href="{{ url('dashboard/edit/'.$data->id) }}" title="edit" class="btn btn-soft-danger" >
+                                                <a href="{{ url('applicant/'.$data->id .'/edit') }}" title="edit" class="btn btn-soft-danger" >
                                                    <i class="ri-settings-2-line align-text-bottom me-1 fs-16 lh-1"></i>  Edit Profile
                                                 </a>
                                             {{-- </button> --}}
@@ -223,7 +223,7 @@
                                             <!-- settings -->
                                             <div id="edit-profile" class="tab-pane">
                                                 <div class="user-profile-content">
-                                                     <form class="form-horizontal form-material" action="{{ url('/form/admin/' . $data->id) }}" method="POST">
+                                                     <form class="form-horizontal form-material" action="{{ url('/admin/approve/' . $data->id) }}" method="POST">
                                                     @csrf
 
                                                     <input type="hidden" name="profile_id" value="{{$data->id}}">

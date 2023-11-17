@@ -1,4 +1,4 @@
-@extends('layout.app')
+@extends('admin.layout.app')
 
 @section('content')
  <!-- Content Wrapper. Contains page content -->
@@ -31,7 +31,7 @@
                                 <div class="card-body">
                         
                                    
-                                    <form method="POST" action="{{ url('form') }}">
+                                    <form method="POST" action="{{ url('form') }}" style="padding:20px;">
                                         @csrf
                     
                                          <div class="row" style="display: flex; justify-content:space-between;">

@@ -1,4 +1,4 @@
-@extends('layout.app')
+@extends('admin.layout.app')
 
 @section('content')
 <style>
@@ -55,33 +55,37 @@
                                 <div class="box box-info">
                     <div class="box-header with-border p-t-1">
                         <form method="POST" 
-                        action="{{route('printIndex')}}" id="searchForm">
+                        action="{{route('print.index')}}" id="searchForm">
                             @csrf
-
-
                             <div class="row">
-
                                  <div class="col-lg-4">
                                     <fieldset class="form-group">
                                         <input type="text" name="full_name" class = "form-control" placeholder="Enter Full Name" id="name" value={{ isset($request->full_name) ? $request->full_name : '' }}>
                                     </fieldset>   
                                 </div>
-
                                   <div class="col-lg-3">
                                     <fieldset class="form-group">
-                                        {{-- <input type="text" name="darta_number" class = "form-control" placeholder="Enter Darta Number" value={{ isset($request->darta_number) ? $request->darta_number : '' }}> --}}
-                                       <select class="form-control" name="disability_type" id='status'>
-                                          <option value={{ isset($request->disability_type) ? $request->disability_type : ''}}>{{ isset($request->disability_type) ? $request->disability_type : 'असक्षमता प्रकार चयन गर्नुहोस्'}}</option>
-                                         <option value="A">A</option>
-                                         <option value="A">Admin Approved</option>
-                                         <option value="Approved">Approved</option>
-                                         <option value="Rejected">Rejected</option>
+                                       <select class="form-control" name="serverity_disability_type" id='serverity_disability_type'>
+                                          <option value={{ isset($request->serverity_disability_type) ? $request->serverity_disability_type : ''}}>{{ isset($request->serverity_disability_type) ? getDisabilityName($request->serverity_disability_type) : 'असक्षमता प्रकार चयन गर्नुहोस्'}}</option>
+                                          @foreach($severity_types as $disability)
+                                            <option value="{{ $disability->id }}">{{ $disability->name_nepali }}</option>
+                                         @endforeach
                                         </select>
                                     </fieldset>
-                                  </div>
+                                </div>
+                               
+                                  <div class="col-lg-3">
+                                    <fieldset class="form-group">
+                                       <select class="form-control" name="disability_type" id='status'>
+                                          <option value={{ isset($request->disability_type) ? $request->disability_type : ''}}>{{ isset($request->disability_type) ? getDisabilityName($request->disability_type) : 'असक्षमता प्रकार चयन गर्नुहोस्'}}</option>
+                                          @foreach($disability_types as $disability)
+                                            <option value="{{ $disability->id }}">{{ $disability->name_nepali }}</option>
+                                         @endforeach
+                                        </select>
+                                    </fieldset>
+                                </div>
 
-                              
-                           
+                            
                          
                                 <div class="col-lg-2" >
                                     <button type="submit" class="btn search-button">Search</button>
@@ -121,13 +125,13 @@
                                           <tr>
                                           <td>{{ $pageRelativeIndex }}</td>
                                           <td>{{ $item->full_name }}</></td>
-                                          <td>{{ $item->disability_type }}</td>
-                                          <td>{{ $item->disability_cause }}</td>
+                                          <td>{{ isset($item->disability_type_id) ? $item->disability->name_nepali  :'' }}</td>
+                                          <td>{{ isset($item->incapacitated_base_disability_type_id) ? $item->disabilitySeverity->name_nepali  :'' }}</td>
                                           <td>{{ $item->citizenship_number }}</td>
                                           <td>{{ $item->dob_nep }}</td>
                                           <td>{{ $item->IdNumber }}</td>
                                           <td>
-                                            <a target="_blank" href="{{ url('dashboard/show/'.$item->id) }}"><span class="label label-success">Print</span></a>
+                                            <a  href="{{ url('print/'.$item->id) }}"><span class="label label-success">Print</span></a>
                                            
                                         </td>
                                           </tr>
@@ -156,22 +160,5 @@
 
 @push('scripts')
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-
-    {{-- <script type="text/javascript">
-        $('#search').on('keyup',function(){
-            var value=$(this).val();
-            $.ajaxSetup({ headers: { 'csrftoken' : '{{ csrf_token() }}' } });
-            $.ajax({
-                type : 'Get',
-                url : '{{URL::to('dashboard/search')}}',
-                data:{'search':value},
-                success:function(data){
-                    $('#withAjax').html(data);
-                    $('#withAjax').show();
-                    $('#withoutAjax').hide();
-                }
-            });
-        })
-    </script> --}}
 
 @endpush

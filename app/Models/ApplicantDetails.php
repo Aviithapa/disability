@@ -120,11 +120,11 @@ class ApplicantDetails extends Model
 
     public function disability()
     {
-        return $this->belongsTo(DisabilityType::class, 'disability_type_id');
+        return $this->belongsTo(DisabilityType::class, 'disability_type_id', 'id');
     }
 
     public function disabilitySeverity()
     {
-        return $this->belongsTo(DisabilityType::class, 'incapacitated_base_disability_type_id');
+        return $this->belongsTo(DisabilityType::class, 'incapacitated_base_disability_type_id', 'id');
     }
 }
